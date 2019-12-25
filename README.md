@@ -525,6 +525,41 @@ moment(需要格式化的时间).format(格式)
 
 > npm install xlsx -s
 
+### 实现富文本编辑
+
+富文本编辑实现的原理是 contentable document.execCommand 
+
+在此中，借用开源 富文本编辑器 wangEditor
+
+> npm install wangeditor -s
+
+## 数据可视化
+
+图表类型
+- canvas 位图格式
+- svg 矢量图
+- 三维图表 webGL
+
+开源图表库
+- echarts
+- highcharts
+- antV
+
+数据可视化
+- D3.js
+- dataV
+
+游戏
+- egret
+
+## Echart 图表库使用
+
+> npm install echarts --save
+
+## redux
+
+> npm i redux react-redux redux-thunk -s
+
 ## 组件 <a id="components"></a>
 
 ## store

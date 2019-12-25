@@ -39,6 +39,10 @@ const ArticleEdit = Loadable({
   loading: Loading
 })
 
+const Notifications = Loadable({
+  loader: () => import('./Notifications'),
+  loading: Loading
+})
 
 export {
   Dashboard,
@@ -47,5 +51,6 @@ export {
   Settings,
   ArticleList,
   ArticleEdit,
-  Loading
+  Loading,
+  Notifications
 }

@@ -38,3 +38,22 @@ export const deleteArticle = (id) => {
   return service.post(`/api/v1/articlDdelete/${id}`)
 }
 
+// 通过id获取文章
+export const getArticle = (id) => {
+  return service.post(`/api/v1/article/${id}`)
+}
+
+// 保存文章
+export const updateArticle = (id,data) => {
+  return service.post(`/api/v1/updateArticle/${id}`,data)
+}
+
+// 获取 文章阅读量
+export const getArticleAmount = () => {
+  return service.post('/api/v1/articleAmount')
+}
+
+// 获取通知列表 
+export const getNotifications = () => {
+  return service.post('/api/v1/notifications')
+}

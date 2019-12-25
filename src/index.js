@@ -9,22 +9,27 @@ import './index.less'
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 
+import store from './store'
+import { Provider } from 'react-redux'
+
 render(
-  <ConfigProvider locale={zhCN}>
-  <Router>
-    <Switch>
-      <Route path="/admin" render={(routerProps) => {
-        return <App {...routerProps} />
-      }} />>
-      {
-        mainRoutes.map(route => {
-          return <Route key={route.pathname} path={route.pathname} component={route.component} />
-        })
-      }
-      <Redirect to="/admin" exact from="/" />
-      <Redirect to="/404" />
-    </Switch>
-  </Router>
-  </ConfigProvider>,
+  <Provider store={store}>
+    <ConfigProvider locale={zhCN}>
+    <Router>
+      <Switch>
+        <Route path="/admin" render={(routerProps) => {
+          return <App {...routerProps} />
+        }} />>
+        {
+          mainRoutes.map(route => {
+            return <Route key={route.pathname} path={route.pathname} component={route.component} />
+          })
+        }
+        <Redirect to="/admin" exact from="/" />
+        <Redirect to="/404" />
+      </Switch>
+    </Router>
+    </ConfigProvider>
+  </Provider>,
   document.querySelector("#root")
 )
