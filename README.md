@@ -563,3 +563,5 @@ moment(需要格式化的时间).format(格式)
 ## 组件 <a id="components"></a>
 
 ## store
+
+# 我崩溃了...编不下去了emmmmmm
