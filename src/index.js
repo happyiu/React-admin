@@ -17,9 +17,7 @@ render(
     <ConfigProvider locale={zhCN}>
     <Router>
       <Switch>
-        <Route path="/admin" render={(routerProps) => {
-          return <App {...routerProps} />
-        }} />>
+        <Route path="/admin" component={App} />
         {
           mainRoutes.map(route => {
             return <Route key={route.pathname} path={route.pathname} component={route.component} />

@@ -10,17 +10,20 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { getNotificationList } from '../../actions/notifications'
+import { logout } from '../../actions/user'
 
 // const { SubMenu } = Menu
 const { Header, Content, Footer, Sider } = Layout
 
 const mapState = state => {
   return {
-    notificationsCount: state.notifications.list.filter(item => item.hasRead === false).length
+    notificationsCount: state.notifications.list.filter(item => item.hasRead === false).length,
+    avatar: state.user.avatar,
+    displayName: state.user.displayName
   }
 }
 
-@connect(mapState,{ getNotificationList })
+@connect(mapState,{ getNotificationList, logout })
 @withRouter
 class Frame extends Component {
   componentDidMount(){
@@ -30,7 +33,12 @@ class Frame extends Component {
     this.props.history.push(key)
   }
   onDropdownMenuClick = ({ key }) => {
-    this.props.history.push(key)
+    if(key === '/logout'){
+      this.props.logout()
+      this.props.history.push('/login')
+    } else{ 
+      this.props.history.push(key)
+    }
   }
   renderDropdown = () => {
     return (
@@ -40,10 +48,10 @@ class Frame extends Component {
           通知中心
         </Badge>
       </Menu.Item>
-      <Menu.Item key="/admin/settings">   
+      <Menu.Item key="/admin/profile">   
           个人设置
       </Menu.Item>
-      <Menu.Item key="/login">
+      <Menu.Item key="/logout">
           退出
       </Menu.Item>
     </Menu>
@@ -62,8 +70,8 @@ class Frame extends Component {
         <Dropdown overlay={this.renderDropdown}>
           
             <div style={{display: 'flex',alignItems: 'center'}}>
-              <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-              <span>欢迎您！嘻嘻</span>
+              <Avatar src={this.props.avatar} ></Avatar>
+              <span>欢迎您！{this.props.displayName}</span>
               <Badge count={this.props.notificationsCount} offset={[3, 0]}>
                 <Icon type="down" />
               </Badge>

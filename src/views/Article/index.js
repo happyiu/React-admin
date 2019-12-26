@@ -155,6 +155,8 @@ export default class ArticleList extends Component {
       .then(resp => {
         const columnKeys = Object.keys(resp.list[0])
         const columns = this.createColumns(columnKeys)
+        if(!this.updater.isMounted(this)) return 
+
         this.setState({
           total: resp.total,
           columns,
@@ -166,6 +168,7 @@ export default class ArticleList extends Component {
         // 处理错误
       })
       .finally(() => {
+        if(!this.updater.isMounted(this)) return 
         this.setState({
           isLoading: false
         })
@@ -173,6 +176,9 @@ export default class ArticleList extends Component {
   }
   componentDidMount(){
     this.getData()
+  }
+  componentWillUnmount(){
+    
   }
   render() {
     return (
